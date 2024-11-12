@@ -71,7 +71,7 @@ void AAuraPlayerController::BeginPlay()
 	if(UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
 	{
 		Subsystem->AddMappingContext(AuraContext,0);
-
+	}
 		bShowMouseCursor = true;
 		DefaultMouseCursor = EMouseCursor::Default;
 
@@ -79,7 +79,7 @@ void AAuraPlayerController::BeginPlay()
 		InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 		InputModeData.SetHideCursorDuringCapture(false);
 		SetInputMode(InputModeData);
-	}
+	
 }
 
 void AAuraPlayerController::SetupInputComponent()
