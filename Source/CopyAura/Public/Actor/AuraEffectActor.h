@@ -73,4 +73,7 @@ protected:
 	EEffectRemovalPolicy InfiniteRemovalPolicy = EEffectRemovalPolicy::DoNotRemove;
 
 	TMap<FActiveGameplayEffectHandle,UAbilitySystemComponent*> ActiveEffectHandles;
+
+	UPROPERTY(EditAnywhere,BlueprintReadOnly,category = "Applied Effects")
+	float ActorLevel = 1.0f;
 };
