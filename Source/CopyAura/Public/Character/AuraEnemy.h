@@ -22,4 +22,5 @@ public:
 	/*敌人类接口结束*/
 protected:
 	virtual void BeginPlay() override;
+	virtual void InitAbilityActorInfo() override;
 };

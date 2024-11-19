@@ -23,12 +23,15 @@ public:
 protected:
     // Called when the game starts or when spawned
     virtual void BeginPlay() override;
+    
     UPROPERTY(EditAnywhere,Category = "Combat")
     TObjectPtr<USkeletalMeshComponent> Weapon;
 
     UPROPERTY()
     TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+    
     UPROPERTY()
     TObjectPtr<UAttributeSet> AttributeSet;
 
+    virtual void InitAbilityActorInfo();
 };
