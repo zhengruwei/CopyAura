@@ -37,7 +37,7 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
         for (const FGameplayTag& Tag : AssetTags)
         {
           //例如，假设Tag = Message.HealthPotion
-          //"Message.HealthPotion".MacthesTag("Message")将会返回true,"Message".MatchesTag("Message.HealthPotion")将会返回false
+          //"Message.HealthPotion".MatchesTag("Message")将会返回true,"Message".MatchesTag("Message.HealthPotion")将会返回false
           FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
           if (Tag.MatchesTag(MessageTag))
           {
