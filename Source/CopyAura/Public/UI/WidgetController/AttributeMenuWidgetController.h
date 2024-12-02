@@ -22,7 +22,7 @@ public:
 	virtual void BroadCastInitialValues() override;
 
 	UPROPERTY(BlueprintAssignable,Category="GAS|Attributes")
-	FAttributeInfoSignature FAttributeInfoDelegate;
+	FAttributeInfoSignature AttributeInfoDelegate;
 protected:
 	UPROPERTY(EditDefaultsOnly)
 	TObjectPtr<UAttributeInfo> AttributeInfo;
