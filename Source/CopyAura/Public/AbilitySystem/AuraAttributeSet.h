@@ -139,6 +139,13 @@ public:
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,Mana);
 
 	/*
+	 * Meta Attributes
+	 */
+	UPROPERTY(BlueprintReadOnly,Category="Meta Attributes")
+	FGameplayAttributeData IncomingDamage;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,IncomingDamage);
+
+	/*
 	 * 主要属性OnRep函数
 	 */
 	UFUNCTION()
