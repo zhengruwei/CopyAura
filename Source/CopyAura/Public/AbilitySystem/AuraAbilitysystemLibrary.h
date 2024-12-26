@@ -27,4 +27,7 @@ public:
 
 	UFUNCTION(BlueprintCallable,Category = "AuraAbilitysystemLibrary|CharacterClassDefaults")
 	static void InitializeDefalutAttributes(const UObject* WorldContextObject,ECharacterClass CharacterClass,float Level,UAbilitySystemComponent* ASC);
+
+	UFUNCTION(BlueprintCallable,Category = "AuraAbilitysystemLibrary|CharacterClassDefaults")
+	static void GiveStartUpAbilities(const UObject* WorldContextObject,UAbilitySystemComponent* ASC);
 };
