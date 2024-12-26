@@ -40,6 +40,12 @@ void AAuraEnemy::UnHighlightActor()
   Weapon->SetRenderCustomDepth(false);
 }
 
+void AAuraEnemy::Die()
+{
+  SetLifeSpan(LifeSpan);
+  Super::Die();
+}
+
 void AAuraEnemy::BeginPlay()
 {
   Super::BeginPlay();

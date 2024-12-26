@@ -26,6 +26,7 @@ public:
 
 	/*战斗接口类*/
 	FORCEINLINE virtual int32 GetPlayerLevel() override { return Level; }
+	virtual void Die() override;
 	/*战斗接口类结束*/
 
 	UPROPERTY(BlueprintAssignable)
@@ -41,6 +42,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly,Category="Combat")
 	float BaseWalkSpeed = 250.f;
+
+	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Combat")
+	float LifeSpan = 5.f;
 protected:
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo() override;
