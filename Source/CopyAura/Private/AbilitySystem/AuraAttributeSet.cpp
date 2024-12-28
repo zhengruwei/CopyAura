@@ -8,7 +8,9 @@
 #include "GameplayEffectExtension.h"
 #include "GameFramework/Character.h"
 #include "Interaction/CombatInterface.h"
+#include "Kismet/GameplayStatics.h"
 #include "Net/UnrealNetwork.h"
+#include "Player/AuraPlayerController.h"
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
@@ -114,6 +116,8 @@ void UAuraAttributeSet::SetEffectProperties(const struct FGameplayEffectModCallb
   }
 }
 
+
+
 void UAuraAttributeSet::PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data)
 {
   Super::PostGameplayEffectExecute(Data);
@@ -137,8 +141,8 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const struct FGameplayEffectMo
     {
       const float NewHealth = GetHealth()-LocalIncomingDamage;
       SetHealth(FMath::Clamp(NewHealth,0.f,GetMaxHealth()));
-
-      if (const bool bFatal = NewHealth <= 0.f)
+      const bool bFatal = NewHealth <= 0.f;
+      if (bFatal)
       {
         ICombatInterface* CombatInterface = Cast<ICombatInterface>(Properties.TargetAvatarActor);
         if (CombatInterface)
@@ -152,6 +156,18 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const struct FGameplayEffectMo
         TagContainer.AddTag(FAuraGameplayTags::Get().Effects_HitReact);
         Properties.TargetASC->TryActivateAbilitiesByTag(TagContainer);
       }
+      ShowFloatingText(Properties,LocalIncomingDamage);
+    }
+  }
+}
+
+void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Properties, float Damage) const
+{
+  if (Properties.SourceCharacter != Properties.TargetCharacter)
+  {
+    if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(UGameplayStatics::GetPlayerController(Properties.SourceCharacter,0)))
+    {
+      PC->ShowDamageNumber(Damage,Properties.TargetCharacter);
     }
   }
 }
