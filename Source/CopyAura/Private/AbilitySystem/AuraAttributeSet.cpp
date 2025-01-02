@@ -147,7 +147,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const struct FGameplayEffectMo
         ICombatInterface* CombatInterface = Cast<ICombatInterface>(Properties.TargetAvatarActor);
         if (CombatInterface)
         {
-          CombatInterface->Die();
+          CombatInterface->Die(); 
         }
       }
       else 
