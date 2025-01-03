@@ -3,6 +3,7 @@
 
 #include "AbilitySystem/AuraAbilitysystemLibrary.h"
 
+#include "AuraAbilityTypes.h"
 #include "Game/AuraGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/WidgetController/AuraWidgetController.h"
@@ -42,7 +43,7 @@ UAttributeMenuWidgetController* UAuraAbilitysystemLibrary::GetAttributeMenuWidge
   return nullptr;
 }
 
-void UAuraAbilitysystemLibrary::InitializeDefalutAttributes(const UObject* WorldContextObject,ECharacterClass CharacterClass, float Level,UAbilitySystemComponent* ASC)
+void UAuraAbilitysystemLibrary::InitializeDefaultAttributes(const UObject* WorldContextObject,ECharacterClass CharacterClass, float Level,UAbilitySystemComponent* ASC)
 {
   AActor* AvatarActor = ASC->GetAvatarActor();
   
@@ -81,4 +82,39 @@ UCharacterClassInfo* UAuraAbilitysystemLibrary::GetCharacterClassInfo(const UObj
   AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
   if (AuraGameMode == nullptr ) return nullptr;
   return AuraGameMode->CharacterClassInfo;
+}
+
+bool UAuraAbilitysystemLibrary::IsBlockedHit(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+  if (const FAuraGameplayEffectContext* AuraEffectContext = static_cast<const FAuraGameplayEffectContext*>(EffectContextHandle.Get()))
+  {
+    return AuraEffectContext->IsBlockedHit();
+  }
+  return false;
+}
+
+bool UAuraAbilitysystemLibrary::IsCriticalHit(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+  if (const FAuraGameplayEffectContext* AuraEffectContext = static_cast<const FAuraGameplayEffectContext*>(EffectContextHandle.Get()))
+  {
+    return AuraEffectContext->IsCriticalHit();
+  }
+  return false;
+}
+
+void UAuraAbilitysystemLibrary::SetIsBlockedHit(FGameplayEffectContextHandle& EffectContextHandle, bool bInIsBlockHit)
+{
+  if (FAuraGameplayEffectContext* AuraEffectContext = static_cast<FAuraGameplayEffectContext*>(EffectContextHandle.Get()))
+  {
+    AuraEffectContext->SetIsBlockedHit(bInIsBlockHit);
+  }
+}
+
+void UAuraAbilitysystemLibrary::SetIsCriticalHit(FGameplayEffectContextHandle& EffectContextHandle,
+  bool bInIsCriticalHit)
+{
+  if (FAuraGameplayEffectContext* AuraEffectContext = static_cast<FAuraGameplayEffectContext*>(EffectContextHandle.Get()))
+  {
+    AuraEffectContext->SetIsCriticalHit(bInIsCriticalHit);
+  }
 }

@@ -97,5 +97,5 @@ void AAuraEnemy::InitAbilityActorInfo()
 
 void AAuraEnemy::InitializeDefaultAttributes() const
 {
-  UAuraAbilitysystemLibrary::InitializeDefalutAttributes(this,CharacterClass,Level,AbilitySystemComponent);
+  UAuraAbilitysystemLibrary::InitializeDefaultAttributes(this,CharacterClass,Level,AbilitySystemComponent);
 }
