@@ -43,7 +43,6 @@ private:
 
   void ShiftPressed() {bIsShiftKeyDown = true;}
   void ShiftReleased(){bIsShiftKeyDown = false;}
-
   bool bIsShiftKeyDown = false;
 
   void Move(const FInputActionValue& InputActionValue);
