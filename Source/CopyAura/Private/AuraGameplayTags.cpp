@@ -61,11 +61,42 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
  
  GameplayTags.Damage = UGameplayTagsManager::Get().AddNativeGameplayTag(
  FName("Damage"), FString("伤害标签"));
+
+/*
+ * 伤害类型
+ */
  GameplayTags.Damage_Fire = UGameplayTagsManager::Get().AddNativeGameplayTag(
  FName("Damage.Fire"), FString("火属性伤害类型标签"));
+ GameplayTags.Damage_Lightning = UGameplayTagsManager::Get().AddNativeGameplayTag(
+ FName("Damage.Lightning"), FString("电属性伤害类型标签"));
+ GameplayTags.Damage_Arcane = UGameplayTagsManager::Get().AddNativeGameplayTag(
+ FName("Damage.Arcane"), FString("奥术伤害类型标签"));
+ GameplayTags.Damage_Physical = UGameplayTagsManager::Get().AddNativeGameplayTag(
+ FName("Damage.Physical"), FString("物理伤害类型标签"));
 
- GameplayTags.DamageTypes.Add(GameplayTags.Damage_Fire);
+ /*
+ * 伤害抗性
+ */
+ GameplayTags.Attributes_Resistance_Arcane = UGameplayTagsManager::Get().AddNativeGameplayTag(
+ FName("Attributes.Resistance.Arcane"), FString("奥术伤害抗性标签"));
+ GameplayTags.Attributes_Resistance_Fire = UGameplayTagsManager::Get().AddNativeGameplayTag(
+ FName("Attributes.Resistance.Fire"), FString("火属性伤害抗性标签"));
+ GameplayTags.Attributes_Resistance_Physical = UGameplayTagsManager::Get().AddNativeGameplayTag(
+ FName("Attributes.Resistance.Physical"), FString("物理伤害抗性标签"));
+ GameplayTags.Attributes_Resistance_Lighting = UGameplayTagsManager::Get().AddNativeGameplayTag(
+ FName("Attributes.Resistance.Lighting"), FString("电属性伤害抗性标签"));
 
+ /*
+  * 伤害类型和伤害抗性之间的映射
+  */
+ GameplayTags.DamageTypesToResistances.Add(GameplayTags.Damage_Arcane,GameplayTags.Attributes_Resistance_Arcane);
+ GameplayTags.DamageTypesToResistances.Add(GameplayTags.Damage_Fire,GameplayTags.Attributes_Resistance_Fire);
+ GameplayTags.DamageTypesToResistances.Add(GameplayTags.Damage_Physical,GameplayTags.Attributes_Resistance_Physical);
+ GameplayTags.DamageTypesToResistances.Add(GameplayTags.Damage_Lightning,GameplayTags.Attributes_Resistance_Lighting);
+
+ /*
+  * 游戏效果
+  */
  GameplayTags.Effects_HitReact = UGameplayTagsManager::Get().AddNativeGameplayTag(
  FName("Effects.HitReact"), FString("受击反应标签"));
 }
