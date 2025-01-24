@@ -99,4 +99,10 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
   */
  GameplayTags.Effects_HitReact = UGameplayTagsManager::Get().AddNativeGameplayTag(
  FName("Effects.HitReact"), FString("受击反应标签"));
+
+ /*
+  * 技能
+  */
+ GameplayTags.Abilities_Attack = UGameplayTagsManager::Get().AddNativeGameplayTag(
+ FName("Abilities.Attack"), FString("攻击技能标签"));
 }

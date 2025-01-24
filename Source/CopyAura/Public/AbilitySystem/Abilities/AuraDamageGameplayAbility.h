@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Abilities/AuraGameplayAbility.h"
+#include "AuraGameplayAbility.h"
 #include "AuraDamageGameplayAbility.generated.h"
 
 /**

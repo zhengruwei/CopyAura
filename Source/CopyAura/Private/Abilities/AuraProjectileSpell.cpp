@@ -1,7 +1,7 @@
 // Copyright CopyAura zrw
 
 
-#include "Abilities/AuraProjectileSpell.h"
+#include "AbilitySystem/Abilities/AuraProjectileSpell.h"
 
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
