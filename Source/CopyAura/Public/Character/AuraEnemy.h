@@ -26,6 +26,8 @@ public:
 	/*敌人接口类*/
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
+	virtual void SetCombatTarget_Implementation(AActor* InCombatTarget) override;
+	virtual AActor* GetCombatTarget_Implementation() const override;
 	/*敌人接口类结束*/
 
 	/*战斗接口类*/
@@ -49,6 +51,10 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Combat")
 	float LifeSpan = 5.f;
+
+	UPROPERTY(BlueprintReadWrite,Category="Combat")
+	TObjectPtr<AActor> CombatTarget;
+	
 protected:
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo() override;
