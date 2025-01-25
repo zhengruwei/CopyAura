@@ -32,10 +32,15 @@ public:
     virtual void Die() override;
     virtual bool IsDead_Implementation() const override;
     virtual AActor* GetAvatar_Implementation() override;
+    virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() override;
     /** 战斗接口结束 */
 
     UFUNCTION(NetMulticast,Reliable)
-    virtual void MultiCastHandleDeath(); 
+    virtual void MultiCastHandleDeath();
+
+    UPROPERTY(EditAnywhere,Category="Combat")
+    TArray<FTaggedMontage> AttackMontages;
+    
 protected:
    
     virtual void BeginPlay() override;
