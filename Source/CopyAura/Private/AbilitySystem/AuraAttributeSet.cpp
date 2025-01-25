@@ -187,6 +187,11 @@ void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Properties, fl
     if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(Properties.SourceCharacter->Controller))
     {
       PC->ShowDamageNumber(Damage,Properties.TargetCharacter,bBlockedHit,bCriticalHit);
+      return;
+    }
+    if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(Properties.TargetCharacter->Controller))
+    {
+      PC->ShowDamageNumber(Damage,Properties.TargetCharacter,bBlockedHit,bCriticalHit);
     }
   }
 }

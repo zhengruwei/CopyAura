@@ -13,6 +13,11 @@ UCLASS()
 class COPYAURA_API UAuraDamageGameplayAbility : public UAuraGameplayAbility
 {
 	GENERATED_BODY()
+public:
+
+	UFUNCTION(BlueprintCallable)
+	void CausedDamage(AActor* TargetActor);
+	
 protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
