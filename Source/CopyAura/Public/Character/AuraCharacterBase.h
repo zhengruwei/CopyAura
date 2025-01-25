@@ -21,18 +21,23 @@ class COPYAURA_API AAuraCharacterBase : public ACharacter,public IAbilitySystemI
     GENERATED_BODY()
 
 public:
-    // Sets default values for this character's properties
+    
     AAuraCharacterBase();
     virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
     UAttributeSet* GetAttributeSet() const {return AttributeSet;}
-
+    
+    /** 战斗接口 */
+    virtual FVector GetCombatSocketLocation_Implementation() override;
     virtual UAnimMontage*  GetHitReactMontage_Implementation() override;
     virtual void Die() override;
+    virtual bool IsDead_Implementation() const override;
+    virtual AActor* GetAvatar_Implementation() override;
+    /** 战斗接口结束 */
 
     UFUNCTION(NetMulticast,Reliable)
     virtual void MultiCastHandleDeath(); 
 protected:
-    // Called when the game starts or when spawned
+   
     virtual void BeginPlay() override;
     
     UPROPERTY(EditAnywhere,Category = "Combat")
@@ -41,7 +46,7 @@ protected:
     UPROPERTY(EditAnywhere,Category = "Combat")
     FName WeaponTipSocketName;
 
-    virtual FVector GetCombatSocketLocation_Implementation() override;
+    bool bDead = false;
 
     UPROPERTY()
     TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
