@@ -27,7 +27,7 @@ public:
     UAttributeSet* GetAttributeSet() const {return AttributeSet;}
     
     /** 战斗接口 */
-    virtual FVector GetCombatSocketLocation_Implementation() override;
+    virtual FVector GetCombatSocketLocation_Implementation(const FGameplayTag& MontageTag) override;
     virtual UAnimMontage*  GetHitReactMontage_Implementation() override;
     virtual void Die() override;
     virtual bool IsDead_Implementation() const override;
@@ -50,6 +50,12 @@ protected:
 
     UPROPERTY(EditAnywhere,Category = "Combat")
     FName WeaponTipSocketName;
+
+    UPROPERTY(EditAnywhere,Category = "Combat")
+    FName LeftHandSocketName;
+
+    UPROPERTY(EditAnywhere,Category = "Combat")
+    FName RightHandSocketName;
 
     bool bDead = false;
 
