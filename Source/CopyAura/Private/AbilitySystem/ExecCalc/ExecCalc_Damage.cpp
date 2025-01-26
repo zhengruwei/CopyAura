@@ -6,7 +6,7 @@
 #include "AbilitySystemComponent.h"
 #include "AuraAbilityTypes.h"
 #include "AuraGameplayTags.h"
-#include "AbilitySystem/AuraAbilitysystemLibrary.h"
+#include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystem/Data/CharacterClassInfo.h"
 #include "Interaction/CombatInterface.h"
@@ -127,7 +127,7 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
   const bool bBlocked = FMath::RandRange(1,100) < TargetBlockChance;
 
   FGameplayEffectContextHandle EffectContextHandle = OwningSpec.GetEffectContext();
-  UAuraAbilitysystemLibrary::SetIsBlockedHit(EffectContextHandle,bBlocked);
+  UAuraAbilitySystemLibrary::SetIsBlockedHit(EffectContextHandle,bBlocked);
   
   Damage = bBlocked ? Damage / 2.f : Damage;
   
@@ -139,7 +139,7 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
   ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorPenetrationDef,EvaluationParameters,SourceArmorPenetration);
   SourceArmorPenetration = FMath::Max<float>(0.f, SourceArmorPenetration);
 
-  const UCharacterClassInfo* CharacterClassInfo = UAuraAbilitysystemLibrary::GetCharacterClassInfo(SourceAvatarActor);
+  const UCharacterClassInfo* CharacterClassInfo = UAuraAbilitySystemLibrary::GetCharacterClassInfo(SourceAvatarActor);
   const FRealCurve* ArmorPenetrationCurve = CharacterClassInfo->DamageCalculationCoefficients->FindCurve(FName("ArmorPenetration"),FString());
   const float ArmorPenetrationCoefficient = ArmorPenetrationCurve->Eval(SourceCombatInterface->GetPlayerLevel());
   const float EffectiveArmor = TargetArmor *  FMath::Max<float>(0.f,(100 - SourceArmorPenetration * ArmorPenetrationCoefficient)) / 100.f;
@@ -165,7 +165,7 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
   const float EffectiveCriticalHitChance = SourceCriticalHitChance - TargetCriticalHitResistance * CriticalHitResistanceCoefficient;
   const bool bCriticalHit = FMath::RandRange(1,100) < EffectiveCriticalHitChance;
 
-  UAuraAbilitysystemLibrary::SetIsCriticalHit(EffectContextHandle,bCriticalHit);
+  UAuraAbilitySystemLibrary::SetIsCriticalHit(EffectContextHandle,bCriticalHit);
 
   Damage = bCriticalHit ? 2.f*Damage + SourceCriticalHitDamage : Damage;
 

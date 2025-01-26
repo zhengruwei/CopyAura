@@ -6,7 +6,7 @@
 #include "GameplayEffectTypes.h"
 #include "Data/CharacterClassInfo.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "AuraAbilitysystemLibrary.generated.h"
+#include "AuraAbilitySystemLibrary.generated.h"
 
 class UAbilitySystemComponent;
 class UAttributeMenuWidgetController;
@@ -15,7 +15,7 @@ class UOverlayWidgetController;
  * 
  */
 UCLASS()
-class COPYAURA_API UAuraAbilitysystemLibrary : public UBlueprintFunctionLibrary
+class COPYAURA_API UAuraAbilitySystemLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 public:
@@ -49,4 +49,7 @@ public:
 
 	UFUNCTION(BlueprintCallable,Category = "AuraAbilitysystemLibrary|GameplayMechanics")
 	static void GetLivePlayersWithinRadius(const UObject* WorldContextObject,TArray<AActor*>& OutOverlappingActors,const TArray<AActor*>& ActorsToIgnore,float Radius,const FVector& SphereOrigin);
+
+	UFUNCTION(BlueprintPure,Category = "AuraAbilitysystemLibrary|GameplayMechanics")
+	static bool IsNotFriend(AActor* FirstActor,AActor* SecondActor);
 };

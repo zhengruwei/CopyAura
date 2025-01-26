@@ -5,7 +5,7 @@
 
 #include "AuraGameplayTags.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
-#include "AbilitySystem/AuraAbilitysystemLibrary.h"
+#include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AI/AuraAIController.h"
 #include "BehaviorTree/BehaviorTree.h"
@@ -84,7 +84,7 @@ void AAuraEnemy::BeginPlay()
   InitAbilityActorInfo();
   if (HasAuthority())
   {
-    UAuraAbilitysystemLibrary::GiveStartUpAbilities(this,AbilitySystemComponent,CharacterClass);
+    UAuraAbilitySystemLibrary::GiveStartUpAbilities(this,AbilitySystemComponent,CharacterClass);
   }
   
 
@@ -139,5 +139,5 @@ void AAuraEnemy::InitAbilityActorInfo()
 
 void AAuraEnemy::InitializeDefaultAttributes() const
 {
-  UAuraAbilitysystemLibrary::InitializeDefaultAttributes(this,CharacterClass,Level,AbilitySystemComponent);
+  UAuraAbilitySystemLibrary::InitializeDefaultAttributes(this,CharacterClass,Level,AbilitySystemComponent);
 }
