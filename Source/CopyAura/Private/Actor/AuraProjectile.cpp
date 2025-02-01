@@ -6,6 +6,7 @@
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
 #include "NiagaraFunctionLibrary.h"
+#include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "Components/AudioComponent.h"
 #include "Components/SphereComponent.h"
 #include "CopyAura/CopyAura.h"
@@ -61,14 +62,16 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 	{
 		return;
 	}
-
+	if (DamageEffectSpecHandle.Data.IsValid() && !UAuraAbilitySystemLibrary::IsNotFriend(DamageEffectSpecHandle.Data.Get()->GetContext().GetEffectCauser(),OtherActor))
+	{
+		return;
+	}
 	if (!bHit)
 	{
 		UGameplayStatics::PlaySoundAtLocation(this,ImpactSound,GetActorLocation(),FRotator::ZeroRotator);
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this,ImpactEffect,GetActorLocation());
 		if (LoopingSoundComponent) LoopingSoundComponent->Stop();
 	}
-	
 	if (HasAuthority())
 	{
 		if (UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OtherActor))
