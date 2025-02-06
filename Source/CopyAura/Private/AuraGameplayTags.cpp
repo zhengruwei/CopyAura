@@ -115,6 +115,8 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
     FName("CombatSocket.RightHand"), FString("右手"));
   GameplayTags.CombatSocket_LeftHand = UGameplayTagsManager::Get().AddNativeGameplayTag(
     FName("CombatSocket.LeftHand"), FString("左手"));
+  GameplayTags.CombatSocket_Tail = UGameplayTagsManager::Get().AddNativeGameplayTag(
+    FName("CombatSocket.Tail"), FString("尾巴"));
   
   /*
    * 蒙太奇标签
